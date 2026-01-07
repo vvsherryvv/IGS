@@ -10,7 +10,9 @@ fi
 videopath="$1"
 
 # Run the Python scripts with the provided path
-python pre_input.py --videopath "$videopath"
-python my_convert.py -s "$videopath/colmap_0"
+# python pre_input.py --videopath "$videopath"
+# python my_convert.py -s "$videopath/colmap_0"
+python my_convert_roma.py -s "$videopath/colmap_0" --skip_matching
 python my_copy_cams.py --source "$videopath/colmap_0" --scene "$videopath"
 python my_convert_frames.py -s "$videopath"
+# python change_sparse_name.py --videopath "$videopath"

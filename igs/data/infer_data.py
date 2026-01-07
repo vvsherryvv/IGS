@@ -193,7 +193,8 @@ class N3dDataset(Dataset):
 
         if self.cfg.scene_type =="n3d":
             eval_vids = [0]
-            input_vids = [13, 1, 8, 4] # only 4 views
+            # input_vids = [13, 1, 8, 4] # only 4 views
+            input_vids = [1]
 
             vids =  eval_vids + input_vids
         elif self.cfg.scene_type == "meet":
@@ -218,8 +219,8 @@ class N3dDataset(Dataset):
                 image_name = cameras_data[vid]["img_name"]
 
                 depth_image_path = os.path.join(cur_frame_dir, self.cfg.gs_mode,"train",f"ours_{self.cfg.iter}","depth_expected_mm", image_name_id+".png")
-                cur_image_path = os.path.join(cur_frame_dir, "images_r2", image_name+".png")
-                next_image_path = os.path.join(next_frame_dir,  "images_r2", image_name+".png")
+                cur_image_path = os.path.join(cur_frame_dir, "images_512", image_name+".png")
+                next_image_path = os.path.join(next_frame_dir,  "images_512", image_name+".png")
                 
                 cur_image_path_resize = os.path.join(cur_frame_dir, "images_512", image_name+".png")
                 next_image_path_resize = os.path.join(next_frame_dir,  "images_512", image_name+".png")
@@ -405,7 +406,7 @@ def process_item( idx, self):
 
         if self.cfg.scene_type =="n3d":
             image_name = camera["img_name"]
-            cur_image_path = os.path.join(cur_frame_dir, "images_r2", image_name + ".png")
+            cur_image_path = os.path.join(cur_frame_dir, "images_512", image_name + ".png")
 
         elif self.cfg.scene_type == "meet":
             image_name = camera["img_name"]

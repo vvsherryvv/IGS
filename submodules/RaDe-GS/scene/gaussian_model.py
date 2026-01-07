@@ -286,7 +286,13 @@ class GaussianModel:
             if focal_length < focal_x:
                 focal_length = focal_x
         
-        distance[~valid_points] = distance[valid_points].max()
+        # distance[~valid_points] = distance[valid_points].max()
+        if valid_points.sum() == 0:
+            # 如果没有有效点，就跳过或者设为一个默认大值
+            return
+            # 或者: distance[~valid_points] = 100.0 (如果必须赋值的话)
+        else:
+            distance[~valid_points] = distance[valid_points].max()
         
         #TODO remove hard coded value
         #TODO box to gaussian transform

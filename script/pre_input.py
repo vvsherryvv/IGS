@@ -29,7 +29,12 @@ import shutil
 import pickle
 import sys 
 import argparse
-sys.path.append(".")
+# 修改为将上级目录加入 sys.path
+import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.append(parent_dir)
+# sys.path.append(".") # 原来的这行可以注释掉或保留
 from thirdparty.gaussian_splatting.utils.my_utils import posetow2c_matrcs, rotmat2qvec
 from thirdparty.colmap.pre_colmap import *
 from thirdparty.gaussian_splatting.helper3dg import getcolmapsinglen3d
@@ -44,7 +49,7 @@ def do_system(arg):
 
 def extractframes(videopath):
     ctr=0
-    for i in range(300):
+    for i in range(7):
         if os.path.exists(os.path.join(videopath.replace(".mp4", ""), str(i) + ".png")):
             ctr += 1
 

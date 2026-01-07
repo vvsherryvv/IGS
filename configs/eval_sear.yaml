@@ -3,21 +3,21 @@ data:
   data_cls: igs.data.infer_data.N3dDataset
   data:
     background_color: [0.0, 0.0, 0.0]
-    data_path: "sear_steak_startevery5_eval.json"
+    data_path: "sear_steak_total_7_interval_5.json"
 
     input_height: 512
     input_width: 512
 
-    root_dir: "YOUR ROOT DIR"
+    root_dir: "/data/jieyi/IGS/data/data"
 
-    gs_mode: "start_gs"
+    gs_mode: "test"
     # gs_mode: "start_gs"
     iter: "6000_compress"
 
     scene_type: "n3d"
     need_rays: True
     max_sh_degree: 3
-    start_gs_path: "${data.data.root_dir}/sear_steak/colmap_0/${data.data.gs_mode}/point_cloud/${data.data.iter}_compress/point_cloud.ply"
+    start_gs_path: "${data.data.root_dir}/sear_steak/colmap_0/${data.data.gs_mode}/point_cloud/iteration_${data.data.iter}/point_cloud.ply"
 
 opt:
   lambda_lpips: 0
@@ -30,15 +30,17 @@ opt:
 
   debug: False
   project: "igs"
-  exp_name : "test_release"
+  exp_name : "test"
 
   workspace: 'logs/${opt.project}/${opt.exp_name}/test_small_sear_300'
 
-  resume_path: "test_release"
+  resume_path: "igs"
   resume_epoch: 15
 
-  resume: 'logs/${opt.project}/${opt.resume_path}/${opt.resume_epoch}/pytorch_model.bin'
-  resume_cfg: 'logs/${opt.project}/${opt.resume_path}/experiment_config.yaml'
+  # resume: 'logs/${opt.project}/${opt.resume_path}/${opt.resume_epoch}/pytorch_model.bin'
+  # resume_cfg: 'logs/${opt.project}/${opt.resume_path}/experiment_config.yaml'
+  resume: 'ckpt/${opt.resume_path}/${opt.resume_epoch}/pytorch_model.bin'
+  resume_cfg: 'ckpt/${opt.resume_path}/experiment_config.yaml'
 
   export_mesh: false
   eval_batch_size: 5

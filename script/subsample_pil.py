@@ -45,7 +45,7 @@ def sub(i):
 
 res = []
 p = mp.Pool(30)
-for path in tqdm(range(0,300)):
+for path in tqdm(range(0,7)):
     # print(i)
     res.append(p.apply_async(sub, args=(path,)))
 

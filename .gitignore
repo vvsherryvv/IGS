@@ -5,3 +5,9 @@ ckpt
 static
 pic
 logs
+
+#data
+data/*
+logs/*
+igs/**/*
+thirdparty/**/*
